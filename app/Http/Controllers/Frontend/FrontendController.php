@@ -10,10 +10,13 @@ use App\Http\Controllers\Controller;
 
 class FrontendController extends Controller
 {
-    public function index(){
+    public function homepage(){
         return view('frontend.homepage');
     } //End Method
     
+    public function index(){
+        return view('welcome');
+    } // End Method
 
     public function BlogDetails($slug){
         $post = BlogPost::where('post_slug',$slug)->firstOrFail();

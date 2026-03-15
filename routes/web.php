@@ -16,8 +16,11 @@ use App\Http\Controllers\Backend\SiteSettingsController;
 
 
 // FrontEnd All Routes
+Route::get('/', function(){
+    return view('welcome');
+});
 
-Route::get('/', [FrontendController::class, 'index']);
+Route::get('/', [FrontendController::class, 'index'])->name('homepage');
 
 Route::get('post/details/{slug}',[FrontendController::class, 'BlogDetails']);
 Route::post('store.comment',[FrontendController::class, 'StoreComment'])->name('store.comment');
