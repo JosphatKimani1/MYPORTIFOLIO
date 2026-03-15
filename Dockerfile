@@ -8,7 +8,11 @@ WORKDIR /app
 RUN install-php-extensions gd intl zip
 
 # Install system utilities needed by composer
-RUN apk add --no-cache git unzip bash
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy composer binary from official composer image
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
