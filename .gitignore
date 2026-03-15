@@ -28,3 +28,9 @@ frankenphp-worker.php
 rr
 .rr.yaml
 /bootstrap/cache/*.php
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
+/storage/*.key
+/storage/framework/cache/data/*
+/storage/framework/views/*.php
+/storage/framework/sessions/*
