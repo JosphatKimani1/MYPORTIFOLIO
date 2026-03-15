@@ -17,21 +17,17 @@ RUN install-php-extensions \
     pdo_mysql \
     bcmath
 
-# 4. Set the working directory
+
+
+# 1. Set the working directory
 WORKDIR /app
 
-# 5. Copy the application code
+# 2. Copy the application code
 COPY . .
 
-# 6. Copy Composer from the official image
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# 7. Install PHP dependencies
-RUN composer install --optimize-autoloader --no-dev --no-scripts
-
-# 8. Set permissions for Laravel
+# 3. Ensure permissions are correct
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-# 9. Method 1: Use Shell Form for the Start Command
-# This allows $PORT to be expanded into the actual port number (e.g., 8080)
+# 4. THE FIX: Use Shell Form (No brackets, no quotes)
+# This allows the shell to replace $PORT with 8080 (or whatever Railway provides)
 CMD frankenphp php-server --listen :$PORT --root public/
