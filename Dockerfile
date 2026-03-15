@@ -32,4 +32,4 @@ RUN composer dump-autoload --optimize
 RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache
 
 # 9. Start Command
-CMD frankenphp php-server --listen :$PORT --root public/
+CMD frankenphp php-server --listen :$PORT --root /app/public
