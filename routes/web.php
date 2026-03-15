@@ -16,6 +16,9 @@ use App\Http\Controllers\backend\SiteSettingsController;
 
 
 // FrontEnd All Routes
+Route::get('/test', function() {
+    return "Laravel is working!";
+});
 
 
 Route::get('/', [FrontendController::class, 'homepage'])->name('homepage');
