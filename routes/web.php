@@ -3,16 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\backend\HeroController;
-use App\Http\Controllers\backend\AdminController;
-use App\Http\Controllers\backend\ResumeController;
-use App\Http\Controllers\backend\SkillsController;
-use App\Http\Controllers\backend\CommentController;
-use App\Http\Controllers\backend\BlogPostController;
-use App\Http\Controllers\backend\ServicesController;
-use App\Http\Controllers\backend\PortfolioController;
-use App\Http\Controllers\backend\TestimonialController;
-use App\Http\Controllers\backend\SiteSettingsController;
+use App\Http\Controllers\Backend\HeroController;
+use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\ResumeController;
+use App\Http\Controllers\Backend\SkillsController;
+use App\Http\Controllers\Backend\CommentController;
+use App\Http\Controllers\Backend\BlogPostController;
+use App\Http\Controllers\Backend\ServicesController;
+use App\Http\Controllers\Backend\PortfolioController;
+use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Backend\SiteSettingsController;
 
 
 // FrontEnd All Routes
