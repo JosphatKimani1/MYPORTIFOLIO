@@ -1,33 +1,35 @@
-# 1. Use the official FrankenPHP image
 FROM dunglas/frankenphp:php8.2.30-bookworm
 
-# 2. Install system dependencies (Debian/Apt style)
+# 1. Install system dependencies (Debian/Apt)
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     bash \
     && rm -rf /var/lib/apt/lists/*
 
-# 3. Install PHP extensions required by Laravel
-RUN install-php-extensions \
-    gd \
-    intl \
-    zip \
-    pcntl \
-    pdo_mysql \
-    bcmath
+# 2. Install PHP extensions required by Laravel
+RUN install-php-extensions gd intl zip pcntl pdo_mysql bcmath
 
-
-
-# 1. Set the working directory
+# 3. Set Working Directory
 WORKDIR /app
 
-# 2. Copy the application code
+# 4. Copy Composer from official image
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# 5. Copy composer files and install dependencies
+# We do this BEFORE copying the rest of the code to speed up builds
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interaction
+
+# 6. Copy the rest of the application code
 COPY . .
 
-# 3. Ensure permissions are correct
-RUN chown -R www-data:www-data storage bootstrap/cache
+# 7. Finalize Composer (generate the optimized class map)
+RUN composer dump-autoload --optimize
 
-# 4. THE FIX: Use Shell Form (No brackets, no quotes)
-# This allows the shell to replace $PORT with 8080 (or whatever Railway provides)
+# 8. Fix Permissions for Laravel
+# FrankenPHP runs as 'www-data', so it must own these folders
+RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache
+
+# 9. Start Command
 CMD frankenphp php-server --listen :$PORT --root public/
