@@ -11,12 +11,12 @@ use App\Http\Controllers\Controller;
 class FrontendController extends Controller
 {
     public function homepage(){
-        return view('frontend.homepage');
+        return view('Frontend.homepage');
     } //End Method
     
-    public function index(){
-        return view('welcome');
-    } // End Method
+    // public function index(){
+    //     return view('welcome');
+    // } // End Method
 
     public function BlogDetails($slug){
         $post = BlogPost::where('post_slug',$slug)->firstOrFail();
