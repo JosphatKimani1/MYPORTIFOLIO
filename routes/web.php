@@ -1,8 +1,7 @@
 <?php
-namespace App\Http\Controllers\Frontend;
-use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\Frontend\FrontendController;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\backend\HeroController;
 use App\Http\Controllers\backend\AdminController;
@@ -17,17 +16,11 @@ use App\Http\Controllers\backend\SiteSettingsController;
 
 
 // FrontEnd All Routes
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-// Route::get('/', [FrontendController::class, 'homepage'])->name('homepage');
-Route::get('homepage', function(){
-        return view('homepage');
-})
+Route::get('/', [FrontendController::class, 'homepage'])->name('homepage');
 
 Route::get('post/details/{slug}',[FrontendController::class, 'BlogDetails']);
-Route::post('store.comment',[FrontendController::class, 'StoreComent'])->name('store.comment');
+Route::post('store.comment',[FrontendController::class, 'StoreComment'])->name('store.comment');
 Route::post('store-contact-message',[FrontendController::class, 'StoreContactMessage'])->name('store.contact.message');
 
 // Backend All Routes
