@@ -1,27 +1,27 @@
+# Use FrankenPHP as base
 FROM dunglas/frankenphp:latest
 
+# Set working directory
 WORKDIR /app
 
-# install required PHP extensions
-RUN install-php-extensions gd intl
+# Install PHP extensions needed by Laravel and composer dependencies
+RUN install-php-extensions gd intl zip
 
-# install composer
+# Install system utilities needed by composer
+RUN apk add --no-cache git unzip bash
+
+# Copy composer binary from official composer image
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# copy project files
+# Copy application files
 COPY . .
 
-# copy caddy configuration
+# Copy Caddyfile if using Caddy server
 COPY Caddyfile /etc/caddy/Caddyfile
 
-# install laravel dependencies
+# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# create laravel writable directories
-RUN mkdir -p storage/framework/sessions \
-    storage/framework/views \
-    storage/framework/cache \
-    bootstrap/cache \
- && chmod -R 775 storage bootstrap/cache
-
-EXPOSE 8080
+# Create Laravel writable directories
+RUN mkdir -p storage/framework storage/logs bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
