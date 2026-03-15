@@ -27,6 +27,12 @@ WORKDIR /app
 # 2. Copy the application code
 COPY . .
 
+# ... (previous lines)
+
+# 1. Create the database directory and the empty sqlite file
+RUN mkdir -p database && touch database/database.sqlite
+
+# 2. Copy composer files and install
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader
 
