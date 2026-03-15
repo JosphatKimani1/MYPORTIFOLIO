@@ -15,7 +15,9 @@ RUN install-php-extensions \
     zip \
     pcntl \
     pdo_mysql \
-    bcmath
+    bcmath\
+    mbstring \
+    xml
 
     # ... (your previous installation steps)
 
@@ -24,6 +26,9 @@ WORKDIR /app
 
 # 2. Copy the application code
 COPY . .
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN composer install --no-dev --optimize-autoloader
 
 # 3. Ensure permissions are correct
 RUN chown -R www-data:www-data storage bootstrap/cache
