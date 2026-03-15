@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\backend;
-
+namespace App\Http\Controllers\Backend;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
