@@ -1,31 +1,37 @@
-# Use FrankenPHP as base
-FROM dunglas/frankenphp:latest
+# 1. Use the official FrankenPHP image
+FROM dunglas/frankenphp:php8.2.30-bookworm
 
-# Set working directory
-WORKDIR /app
-
-# Install PHP extensions needed by Laravel and composer dependencies
-RUN install-php-extensions gd intl zip
-
-# Install system utilities needed by composer
+# 2. Install system dependencies (Debian/Apt style)
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     bash \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy composer binary from official composer image
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# 3. Install PHP extensions required by Laravel
+RUN install-php-extensions \
+    gd \
+    intl \
+    zip \
+    pcntl \
+    pdo_mysql \
+    bcmath
 
-# Copy application files
+# 4. Set the working directory
+WORKDIR /app
+
+# 5. Copy the application code
 COPY . .
 
-# Copy Caddyfile if using Caddy server
-COPY Caddyfile /etc/caddy/Caddyfile
+# 6. Copy Composer from the official image
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+# 7. Install PHP dependencies
+RUN composer install --optimize-autoloader --no-dev --no-scripts
 
-# Create Laravel writable directories
-RUN mkdir -p storage/framework storage/logs bootstrap/cache \
-    && chmod -R 775 storage bootstrap/cache
+# 8. Set permissions for Laravel
+RUN chown -R www-data:www-data storage bootstrap/cache
+
+# 9. Method 1: Use Shell Form for the Start Command
+# This allows $PORT to be expanded into the actual port number (e.g., 8080)
+CMD frankenphp php-server --listen :$PORT --root public/
