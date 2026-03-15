@@ -1,46 +1,48 @@
 # 1. Use the official FrankenPHP image
 FROM dunglas/frankenphp:php8.2.30-bookworm
 
-# 2. Install system dependencies (Debian/Apt style)
+# 2. Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     bash \
     && rm -rf /var/lib/apt/lists/*
 
-# 3. Install PHP extensions required by Laravel
 RUN install-php-extensions \
     gd \
     intl \
     zip \
     pcntl \
     pdo_mysql \
-    bcmath\
+    bcmath \
     mbstring \
     xml
 
-    # ... (your previous installation steps)
-
-# 1. Set the working directory
+# 3. Set the working directory
 WORKDIR /app
 
-# 2. Copy the application code
+# 4. Copy the application code
 COPY . .
 
-# ... (previous lines)
-
-# 1. Create the database directory and the empty sqlite file
+# 5. Create a dummy SQLite file to satisfy Laravel's build-time checks
 RUN mkdir -p database && touch database/database.sqlite
 
-# 2. Copy composer files and install
+# 6. Set permissions so the web user owns the files
+RUN chown -R www-data:www-data /app
+
+# 7. Copy Composer from the official image
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer install --no-dev --optimize-autoloader
 
-# 3. Ensure permissions are correct
-RUN chown -R www-data:www-data storage bootstrap/cache
+# 8. Install dependencies as the www-data user
+# We set DB_CONNECTION=null to prevent Laravel from trying to connect to a DB during build
+USER www-data
+RUN DB_CONNECTION=null composer install --no-dev --optimize-autoloader
 
-# 4. THE FIX: Use Shell Form (No brackets, no quotes)
-# This allows the shell to replace $PORT with 8080 (or whatever Railway provides)
+# 9. Switch back to root for the final container execution
+USER root
 
+# 10. Expose the port FrankenPHP uses
+EXPOSE 8080
 
-CMD frankenphp php-server --listen :$PORT --root public/
+# 11. Final entrypoint (FrankenPHP handles this, but you can specify a start command)
+CMD ["frankenphp", "php-server", "--worker", "public/index.php"]
