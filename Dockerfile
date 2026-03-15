@@ -31,4 +31,5 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 # 4. THE FIX: Use Shell Form (No brackets, no quotes)
 # This allows the shell to replace $PORT with 8080 (or whatever Railway provides)
 
-CMD frankenphp php-server --listen :$PORT --root /app/public --index index.php
+
+CCMD frankenphp php-server --listen :$PORT --root public/
