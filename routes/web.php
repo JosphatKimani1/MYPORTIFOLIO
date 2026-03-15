@@ -1,10 +1,6 @@
 <?php
-
+namespace App\Http\Controllers\Frontend;
 use Illuminate\Support\Facades\Artisan;
-Route::get('/db-import', function() {
-    Artisan::call('migrate:fresh --seed');
-    return "Database created and seeded successfully!";
-});
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -64,7 +60,7 @@ Route::get('delete-service/{id}', 'DeleteService')->name('delete.service');
 
 // Portfolio/Recent works Section All Routes
 Route::controller(PortfolioController::class)->group(function(){
-    Route::get('all-recent-works', 'AllRecentWoks')->name('all.recent.works');
+    Route::get('all-recent-works', 'AllRecentWorks')->name('all.recent.works');
     Route::get('add-work', 'AddWork')->name('add.work');
     Route::post('store-work', 'StoreWork')->name('store.work');
     Route::get('edit-work/{id}', 'EditWork')->name('edit.work');
@@ -99,10 +95,10 @@ Route::controller(SkillsController::class)->group(function(){
 // Testimony Section All Routes
 Route::controller(TestimonialController::class)->group(function(){
     Route::get('add-testimony', 'AddTestimony')->name('add.testimony');
-    Route::post('store-testimony', 'StoreTestimony')->name('store.testimomy');
+    Route::post('store-testimony', 'StoreTestimony')->name('store.testimony');
     Route::get('all-testimony', 'AllTestimonies')->name('all.testimonies');
     Route::get('edit-testimony/{id}', 'EditTestimony')->name('edit.testimony');
-    Route::post('update-testimony', 'UpdateTestimony')->name('update.testimomy');
+    Route::post('update-testimony', 'UpdateTestimony')->name('update.testimony');
     Route::get('delete-testimony/{id}', 'DeleteTestimony')->name('delete.testimony');
    
   
