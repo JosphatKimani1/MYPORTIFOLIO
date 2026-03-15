@@ -18,7 +18,7 @@ use App\Http\Controllers\backend\SiteSettingsController;
 
 // FrontEnd All Routes
 Route::get('/', function () {
-    return view('homepage');
+    return view('welcome');
 });
 
 // Route::get('/', [FrontendController::class, 'homepage'])->name('homepage');
