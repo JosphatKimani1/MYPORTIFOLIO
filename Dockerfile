@@ -14,7 +14,12 @@ COPY Caddyfile /etc/caddy/Caddyfile
 # install laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-RUN chmod -R 775 storage bootstrap/cache
+RUN mkdir -p storage/framework/sessions \
+    storage/framework/views \
+    storage/framework/cache \
+    bootstrap/cache \
+ && chmod -R 775 storage bootstrap/cache
+
 
 RUN php artisan config:cache
 RUN php artisan route:cache
