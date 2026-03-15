@@ -59,48 +59,48 @@
    </div>
    <!-- end: Back To Top -->
    <!-- HEADER START -->
-      @include('Frontend.partials.header')
+      @include('frontend.partials.header')
 
    <!-- HEADER END -->
 
    <main class="site-content" id="content">
       <!-- HERO SECTION START -->
-      @include('Frontend.partials.hero')
+      @include('frontend.partials.hero')
 
       <!-- HERO SECTION END -->
 
       <!-- SERVICES SECTION START -->
-      @include('Frontend.partials.services')
+      @include('frontend.partials.services')
       <!-- SERVICES SECTION END -->
 
       <!-- PORTFOLIO SECTION START -->
-      @include('Frontend.partials.portifolio')
+      @include('frontend.partials.portifolio')
       <!-- PORTFOLIO SECTION END -->
 
            <!-- RESUME SECTION START -->
       
       <!-- RESUME SECTION END -->
-      @include('Frontend.partials.resume')
+      @include('frontend.partials.resume')
       <!-- SKILLS SECTION START -->
-      @include('Frontend.partials.skills')
+      @include('frontend.partials.skills')
       <!-- SKILLS SECTION END -->
 
       <!-- TESTIMONIAL SECTION START -->
-      @include('Frontend.partials.testimonial')
+      @include('frontend.partials.testimonial')
       <!-- TESTIMONIAL SECTION END -->
 
       <!-- BLOG SECTION STAR -->
-      @include('Frontend.partials.blog')
+      @include('frontend.partials.blog')
       <!-- BLOG SECTION END -->
 
       <!-- CONTACT SECTION START -->
-      @include('Frontend.partials.contact')
+      @include('frontend.partials.contact')
       <!-- CONTACT SECTION END -->
 
    </main>
 
    <!-- FOOTER AREA START -->
-      @include('Frontend.partials.footer')
+      @include('frontend.partials.footer')
    <!-- FOOTER AREA END -->
 
    <!-- CSS here -->
