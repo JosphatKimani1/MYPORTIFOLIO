@@ -19,8 +19,10 @@
     </style>
 </head>
 <body>
-    <h1>Hello motherfuckers!</h1>
+    <h1>Hey you, glad you had an interest to visit us!</h1>
 
-    <p>The programmer for this site aliamus kuingia nyasi. Sorry guys! 😒😒🤣</p>
+    <p>The programmer for this site aliamua kuingia nyasi. Sorry guys! 😒😒🤣</p>
+
+    <p>Contact the admin via +254786564468/+254720694048</p>
 </body>
 </html>
