@@ -17,7 +17,12 @@ use App\Http\Controllers\Backend\SiteSettingsController;
 
 // FrontEnd All Routes
 
-Route::get('/', [FrontendController::class, 'index']);
+
+Route::get('/', function () {
+    return "Laravel homepage works";
+});
+
+// Route::get('/', [FrontendController::class, 'index']);
 
 
 Route::get('post/details/{slug}',[FrontendController::class, 'BlogDetails']);

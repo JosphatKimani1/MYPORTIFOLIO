@@ -14,9 +14,6 @@ class FrontendController extends Controller
         return view('frontend.index');
     } //End Method
     
-    // public function index(){
-    //     return view('welcome');
-    // } // End Method
 
     public function BlogDetails($slug){
         $post = BlogPost::where('post_slug',$slug)->firstOrFail();
