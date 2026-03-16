@@ -21,7 +21,8 @@ use App\Http\Controllers\Backend\SiteSettingsController;
 // });
 
 // Route::get('homepage', [FrontendController::class, 'homepage']);
-Route::get('/', view: 'homepage');
+
+Route::view('/', 'homepage');
 
 Route::get('post/details/{slug}',[FrontendController::class, 'BlogDetails']);
 Route::post('store.comment',[FrontendController::class, 'StoreComment'])->name('store.comment');
