@@ -17,7 +17,7 @@ use app\Http\Controllers\Backend\SiteSettingsController;
 
 // FrontEnd All Routes
 
-Route::get('homepage', [FrontendController::class, 'homepage']);
+Route::get('/', [FrontendController::class, 'index']);
 
 Route::fallback(function(){
     return view('frontend.errorpage');
