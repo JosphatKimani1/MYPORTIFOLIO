@@ -3,25 +3,25 @@
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\Frontend\FrontendController;
 use app\Http\Controllers\ProfileController;
-use app\Http\Controllers\Backend\HeroController;
-use app\Http\Controllers\Backend\AdminController;
-use app\Http\Controllers\Backend\ResumeController;
-use app\Http\Controllers\Backend\SkillsController;
-use app\Http\Controllers\Backend\CommentController;
-use app\Http\Controllers\Backend\BlogPostController;
-use app\Http\Controllers\Backend\ServicesController;
-use app\Http\Controllers\Backend\PortfolioController;
-use app\Http\Controllers\Backend\TestimonialController;
-use app\Http\Controllers\Backend\SiteSettingsController;
+use app\Http\Controllers\backend\HeroController;
+use app\Http\Controllers\backend\AdminController;
+use app\Http\Controllers\backend\ResumeController;
+use app\Http\Controllers\backend\SkillsController;
+use app\Http\Controllers\backend\CommentController;
+use app\Http\Controllers\backend\BlogPostController;
+use app\Http\Controllers\backend\ServicesController;
+use app\Http\Controllers\backend\PortfolioController;
+use app\Http\Controllers\backend\TestimonialController;
+use app\Http\Controllers\backend\SiteSettingsController;
 
 
 // FrontEnd All Routes
 
 Route::get('homepage', [FrontendController::class, 'homepage']);
 
-Route::fallback(function(){
-    return view('frontend.errorpage');
-});
+// Route::fallback(function(){
+//     return view('frontend.errorpage');
+// });
 
 Route::get('post/details/{slug}',[FrontendController::class, 'BlogDetails']);
 Route::post('store.comment',[FrontendController::class, 'StoreComment'])->name('store.comment');
