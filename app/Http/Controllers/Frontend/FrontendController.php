@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 class FrontendController extends Controller
 {
     public function homepage(){
-        return view('Frontend.homepage');
+        return view('frontend.homepage');
     } //End Method
     
     // public function index(){
