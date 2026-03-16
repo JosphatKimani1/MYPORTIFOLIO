@@ -13,6 +13,11 @@ class FrontendController extends Controller
     public function homepage(){
         return view('frontend.homepage');
     } //End Method
+
+     public function fallback(){
+        return view('frontend.errorpage');
+    } //End Method
+    
     
 
     public function BlogDetails($slug){
