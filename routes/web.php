@@ -20,6 +20,8 @@ use App\Http\Controllers\Backend\SiteSettingsController;
 
 Route::get('/', [FrontendController::class, 'index']);
 
+Route:fallback('errorpage');
+
 
 Route::get('post/details/{slug}',[FrontendController::class, 'BlogDetails']);
 Route::post('store.comment',[FrontendController::class, 'StoreComment'])->name('store.comment');

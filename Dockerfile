@@ -34,9 +34,10 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 # Set Laravel public root
 ENV FRANKENPHP_ROOT=/app/public
 
-RUN php artisan config:clear \
+RUN touch database/database.sqlite \
+ && php artisan config:clear \
  && php artisan route:clear \
- && php artisan view:clear 
+ && php artisan view:clear
 
 # Start server
 CMD frankenphp php-server --listen :$PORT --root /app/public
