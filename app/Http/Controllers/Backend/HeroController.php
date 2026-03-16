@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace app\Http\Controllers\Backend;
 
 use Carbon\Carbon;
 use App\Models\Hero;
