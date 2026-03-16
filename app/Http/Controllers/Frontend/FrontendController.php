@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 class FrontendController extends Controller
 {
-    public function index(){
+    public function homepage(){
         return view('frontend.homepage');
     } //End Method
     
