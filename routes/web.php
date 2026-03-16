@@ -20,7 +20,7 @@ use App\Http\Controllers\Backend\SiteSettingsController;
 Route::get('homepage', [FrontendController::class, 'homepage']);
 
 Route::fallback(function(){
-    return view('Frontend.errorpage');
+    return view('frontend.errorpage');
 });
 
 Route::get('post/details/{slug}',[FrontendController::class, 'BlogDetails']);
