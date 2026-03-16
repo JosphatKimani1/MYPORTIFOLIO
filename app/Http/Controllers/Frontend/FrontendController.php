@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Frontend;
 
 use App\Models\Comment;
 use App\Models\Contact;
