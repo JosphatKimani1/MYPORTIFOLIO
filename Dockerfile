@@ -36,8 +36,7 @@ ENV FRANKENPHP_ROOT=/app/public
 
 RUN php artisan config:clear \
  && php artisan route:clear \
- && php artisan view:clear \
- && php artisan cache:clear
+ && php artisan view:clear 
 
 # Start server
 CMD frankenphp php-server --listen :$PORT --root /app/public
