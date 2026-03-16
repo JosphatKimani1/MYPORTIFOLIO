@@ -20,7 +20,7 @@ use App\Http\Controllers\Backend\SiteSettingsController;
 
 Route::get('/', [FrontendController::class, 'index']);
 
-Route:fallback(function(){
+Route::fallback(function(){
     return view('frontend.errorpage');
 });
 
