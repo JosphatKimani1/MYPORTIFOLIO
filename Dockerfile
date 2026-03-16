@@ -28,6 +28,8 @@ COPY . .
 # 3. Ensure permissions are correct
 RUN chown -R www-data:www-data storage bootstrap/cache
 
+ENV FRANKENPHP_ROOT=/app/public
+
 # 4. THE FIX: Use Shell Form (No brackets, no quotes)
 # This allows the shell to replace $PORT with 8080 (or whatever Railway provides)
 
