@@ -20,6 +20,10 @@ use App\Http\Controllers\Backend\SiteSettingsController;
 
 Route::get('/', [FrontendController::class, 'homepage']);
 
+Route::fallback(function(){
+    return view('lost');
+});
+
 
 Route::get('post/details/{slug}',[FrontendController::class, 'BlogDetails']);
 Route::post('store.comment',[FrontendController::class, 'StoreComment'])->name('store.comment');
