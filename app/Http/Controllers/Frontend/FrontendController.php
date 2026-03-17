@@ -14,19 +14,20 @@ class FrontendController extends Controller
         return view('frontend.homepage');
     } //End Method
 
-     public function fallback(){
-        return view('frontend.errorpage');
-    } //End Method
-    
+
     
 
-    public function BlogDetails($slug){
-        $post = BlogPost::where('post_slug',$slug)->firstOrFail();
-        $rposts = BlogPost::Latest()->limit(3)->get();
-        return view('frontend.blog.post_details', compact('post', 'rposts'));
+   public function BlogDetails($slug){
+    $post = BlogPost::where('post_slug', $slug)->firstOrFail();
 
-    } // End Method
+    $rposts = BlogPost::latest()
+        ->where('id', '!=', $post->id)
+        ->limit(3)
+        ->get();
 
+    return view('frontend.blog.post_details', compact('post', 'rposts'));
+}
+// End method
     public function StoreComent(Request $request){
 
         $comment = new Comment();
