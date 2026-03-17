@@ -21,11 +21,6 @@ use App\Http\Controllers\Backend\SiteSettingsController;
 Route::get('/', [FrontendController::class, 'homepage']);
 
 
-Route::fallback(function(){
-    return view('frontend.errorpage');
-});
-
-
 Route::get('post/details/{slug}',[FrontendController::class, 'BlogDetails']);
 Route::post('store.comment',[FrontendController::class, 'StoreComment'])->name('store.comment');
 Route::post('store-contact-message',[FrontendController::class, 'StoreContactMessage'])->name('store.contact.message');
