@@ -1,6 +1,5 @@
 FROM dunglas/frankenphp:php8.2-bookworm
 
-# Install PHP extensions
 RUN install-php-extensions \
     gd \
     intl \
@@ -17,18 +16,12 @@ RUN apt-get update && apt-get install -y curl unzip \
 
 WORKDIR /app
 
-# Copy composer files first (for caching)
 COPY composer.json composer.lock ./
-
 RUN composer install --no-dev --optimize-autoloader --no-scripts
 
-# Copy rest of app
 COPY . .
 
-# SQLite setup
 RUN mkdir -p database && touch database/database.sqlite || true
 
+# ✅ Use correct Caddy config
 COPY Caddyfile /etc/caddy/Caddyfile
-
-# 🔥 CRITICAL FIX (Laravel serving)
-WORKDIR /app/public
