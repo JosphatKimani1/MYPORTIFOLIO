@@ -17,13 +17,11 @@ use App\Http\Controllers\Backend\SiteSettingsController;
 
 // FrontEnd All Routes
 
-
-Route::get('/', [FrontendController::class, 'homepage']);
-
-Route::fallback(function(){
-    return view('lost');
+Route::get('/', function () {
+    return 'Laravel is working!';
 });
 
+// Route::get('/', [FrontendController::class, 'homepage'])->name('homepage');
 
 Route::get('post/details/{slug}',[FrontendController::class, 'BlogDetails']);
 Route::post('store.comment',[FrontendController::class, 'StoreComment'])->name('store.comment');

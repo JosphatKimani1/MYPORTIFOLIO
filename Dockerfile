@@ -28,5 +28,7 @@ COPY . .
 # SQLite setup
 RUN mkdir -p database && touch database/database.sqlite || true
 
+COPY Caddyfile /etc/caddy/Caddyfile
+
 # 🔥 CRITICAL FIX (Laravel serving)
 WORKDIR /app/public
