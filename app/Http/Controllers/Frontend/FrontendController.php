@@ -10,8 +10,8 @@ use App\Http\Controllers\Controller;
 
 class FrontendController extends Controller
 {
-    public function errorpage(){
-        return view('frontend.errorpage');
+    public function homepage(){
+        return view('frontend.homepage');
     } //End Method
 
 
